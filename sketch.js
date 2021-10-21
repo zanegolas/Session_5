@@ -108,16 +108,14 @@ function typeText(){
 }
 
 function paintVideo() {
-  if (true) {
-    texture(vid);
-    translate(mouseX - width / 2, mouseY - height / 2, 0);
-    push();
-    rotateZ(frameCount * 0.01);
-    rotateX(frameCount * 0.01);
-    rotateY(frameCount * 0.01);
-    box(width / 10);
-    pop();
-  }
+  texture(vid);
+  translate(mouseX - width / 2, mouseY - height / 2, 0);
+  push();
+  rotateZ(frameCount * 0.01);
+  rotateX(frameCount * 0.01);
+  rotateY(frameCount * 0.01);
+  box(width / 10);
+  pop();
 }
 
 function blowItUp (){
