@@ -1,5 +1,5 @@
-let button1, button2, button3, button4;
-let brushSelect = 0;
+let button0, button1, button2, button3;
+let brushSelect;
 
 
 function setup() {
@@ -7,12 +7,23 @@ function setup() {
   background(0);
   rectMode(CENTER);
 
-  buttonSetup(button2, 'Type', 1, width * .25, 0);
-  buttonSetup(button3, "Video", 2, width * .5, 0);
-  buttonSetup(button4, 'Bomb', 3, width * .75, 0);
-  buttonSetup(button1,"Cube", 0, 0, 0);
-  print(brushSelect);
+  button0 = createButton('Cube');
+  button0.position(0,0);
+  button0.mousePressed(brush0);
 
+  button1 = createButton('Type');
+  button1.position(width * .25,0);
+  button1.mousePressed(brush1);
+
+  button2 = createButton('Video');
+  button2.position(width * .5,0);
+  button2.mousePressed(brush2);
+
+  button3 = createButton('Dynamite');
+  button3.position(width * .75,0);
+  button3.mousePressed(brush3);
+
+  brushSelect = 0;
 
 
 }
@@ -24,16 +35,20 @@ function draw() {
 
 }
 
-
-
-function changeBrush(brushNumber){
-  brushSelect = brushNumber;
+function brush0(){
+  brushSelect = 0;
 }
 
-function buttonSetup(buttonName, buttonLabel, assignedValue, x, y){
-  buttonName = createButton(buttonLabel);
-  buttonName.position(x,y);
-  buttonName.mousePressed(changeBrush(assignedValue));
+function brush1(){
+  brushSelect = 1;
+}
+
+function brush2(){
+  brushSelect = 2;
+}
+
+function brush3(){
+  brushSelect = 3;
 }
 
 function paintCube(){
@@ -49,61 +64,4 @@ function paintCube(){
   }
 }
 
-/*
-function setup() {
-  createCanvas(710, 400, WEBGL);
-}
 
-function draw() {
-  background(0);
-
-  translate(-240, -100, 0);
-  normalMaterial();
-  push();
-  rotateZ(frameCount * 0.01);
-  rotateX(frameCount * 0.01);
-  rotateY(frameCount * 0.01);
-  plane(70);
-  pop();
-
-  translate(240, 0, 0);
-  push();
-  rotateZ(frameCount * 0.01);
-  rotateX(frameCount * 0.01);
-  rotateY(frameCount * 0.01);
-  box(70, 70, 70);
-  pop();
-
-  translate(240, 0, 0);
-  push();
-  rotateZ(frameCount * 0.01);
-  rotateX(frameCount * 0.01);
-  rotateY(frameCount * 0.01);
-  cylinder(70, 70);
-  pop();
-
-  translate(-240 * 2, 200, 0);
-  push();
-  rotateZ(frameCount * 0.01);
-  rotateX(frameCount * 0.01);
-  rotateY(frameCount * 0.01);
-  cone(70, 70);
-  pop();
-
-  translate(240, 0, 0);
-  push();
-  rotateZ(frameCount * 0.01);
-  rotateX(frameCount * 0.01);
-  rotateY(frameCount * 0.01);
-  torus(70, 20);
-  pop();
-
-  translate(240, 0, 0);
-  push();
-  rotateZ(frameCount * 0.01);
-  rotateX(frameCount * 0.01);
-  rotateY(frameCount * 0.01);
-  sphere(70);
-  pop();
-}
-*/
