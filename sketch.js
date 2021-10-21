@@ -1,6 +1,10 @@
 let button0, button1, button2, button3;
-let brushSelect;
+let brushSelect, typeIndex, myFont, textBank, typeMax;
 
+function preload() {
+  myFont = loadFont('assets/Inconsolata-Regular.ttf');
+  textBank = loadStrings('assets/text_bank.txt');
+}
 
 function setup() {
   createCanvas(1000, 800, WEBGL);
@@ -24,6 +28,9 @@ function setup() {
   button3.mousePressed(brush3);
 
   brushSelect = 0;
+  typeIndex = 0;
+  typeMax = textBank.length - 1;
+
 
 
 }
@@ -31,6 +38,9 @@ function setup() {
 function draw() {
   if (brushSelect === 0){
     paintCube();
+  }
+  if (brushSelect === 1){
+    typeText();
   }
 
 }
@@ -62,6 +72,24 @@ function paintCube(){
     box(width / 50);
     pop();
   }
+}
+
+function typeText(){
+  translate(mouseX - width / 2, mouseY - height / 2, 0);
+  let speed = abs(mouseX - pmouseX) + abs(mouseY - pmouseY);
+  textSize(width/1000 * speed);
+  textFont(myFont);
+  textAlign(CENTER,CENTER);
+  if (mouseIsPressed){
+    text(textBank[typeIndex], 0, 0);
+    if (typeIndex < typeMax){
+      typeIndex++;
+    }
+    else{
+      typeIndex = 0;
+    }
+  }
+
 }
 
 
