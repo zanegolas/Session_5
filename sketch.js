@@ -1,6 +1,7 @@
 let button0, button1, button2, button3;
 let brushSelect, typeIndex, myFont, textBank, typeMax;
-let vid, img;
+let vid, img, sound;
+let clickBuffer = 0;
 
 function preload() {
   myFont = loadFont('assets/Inconsolata-Regular.ttf');
@@ -8,6 +9,7 @@ function preload() {
   vid = createVideo('assets/video.mp4');
   vid.hide();
   img = loadImage('assets/cursor-tnt-anim.gif');
+  sound = loadSound('assets/Explosion.wav');
 
 }
 
@@ -74,6 +76,7 @@ function brush2(){
 function brush3(){
   brushSelect = 3;
   vid.pause();
+  clickBuffer = 0;
 }
 
 function paintCube(){
@@ -121,11 +124,14 @@ function paintVideo() {
 function blowItUp (){
   translate(mouseX - width / 2, mouseY - height / 2, 0);
   image(img, 0, 0);
-  if (!mouseIsPressed){
-    background(0);
-    brush1();
+  clickBuffer++;
+  if (clickBuffer >= 120){
+    if (mouseIsPressed) {
+      sound.play();
+      background(0);
+      brush0();
+    }
   }
-
 
 }
 
